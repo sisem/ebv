@@ -132,24 +132,17 @@ void CalculateAngles(void) {
 				// make clipping
 				if(a < 0) a += 180;
 
-//				printf("Region %i: %3.1f\n", o,  a);
-
-
 				// do binning
 				if((a <= 22.5) | (a > 157.5)) 	binCnt[0]++;
 				if((a > 22.5)  & (a <= 67.5)) 	binCnt[1]++;
 				if((a > 67.5)  & (a <= 112.5)) 	binCnt[2]++;
 				if((a > 112.5) & (a <= 157.5)) 	binCnt[3]++;
-
-//				printf("Region %i: %i\n", o, binCnt[0]);
 			}
 
 			currentRun = currentRun->next; //get net run of current object
 		}  while(currentRun != NULL); //end of current object }
 
-//		printf("Region %i: %i %i %i %i\n", o, binCnt[0], binCnt[1], binCnt[2], binCnt[3]);
-
-//		// find index of most frequented bin
+		// find index of most frequented bin
 		binCntMax = 0; iBinMax = 0;
 		for(i = 0; i < (sizeof(bins) / sizeof(int)); i++) {
 
@@ -159,13 +152,9 @@ void CalculateAngles(void) {
 				iBinMax = i;			// save index of biggest bin
 			}
 		}
-//
-//		printf("Region %i: %i %i %i %i  max_i: %i\n", o, binCnt[0], binCnt[1], binCnt[2], binCnt[3], iBinMax);
-//
 		printf("Region %i: %i\n", o, bins[iBinMax]);
 
 		// find center
-//		int cX = currentRun->startColumn - currentRun->endColumn;
 		char buffer [8];
 		uint len = sprintf(buffer, "%d deg", bins[iBinMax]);
 		uint16 cX = ImgRegions.objects[o].centroidX - 4*strlen(buffer);
