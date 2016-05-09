@@ -169,3 +169,6 @@ gdbserver-kill:
 # Cleans the module.
 clean:
 	rm -rf build *.gdb $(BINARIES) $(APP_NAME).app cgi/cgi_target.gdb
+
+kill:
+	ssh root@$(CONFIG_TARGET_IP) "killall app"
